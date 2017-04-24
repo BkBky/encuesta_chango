@@ -1,0 +1,40 @@
+<p>Vista particial de answers /2</p>
+<% counter_ans=0 %>
+<% survey_questions = Question.all.where(survey_id: @current_question.survey)%>
+
+<p id="counter_quest"><%= counter = survey_questions.count %></p><br>
+<% survey_questions.each_with_index do |quest_survey, index|%>
+    <%= index+1 %>. <%= quest_survey.question %><br>
+        
+    <%quest_survey.answers.each do |ans|%>
+        <% answer_question = Answer.where(question_id: ans.question_id)%>
+        <% total_ans = answer_question.count%>
+        <ul>
+           <li id="counter_ans" value="<%= counter_ans+=1 %>"><%= ans.answer %></li>
+        </ul>
+    <% end %><!-- fin de iteracion quest_survey.answers -->
+
+       
+
+
+   
+<% end%> <!-- fin de iteracion_sruvey_questions -->  
+
+    <form id="create_answer" action="/create_answer" method="post">
+      <input type="text" name="answer" placeholder="Type an answer">
+      <input type="submit" value="Create answer">
+    </form><br><br>
+   
+    <a id="link_create_quest2" href="/question"><button>Done with question</button></a><br><br>
+
+    <form id="create_quest2" action="/create_question" method="post">
+    <input type="text" name="question" value="¿?" placeholder="Write your question">
+    <input type="submit" value="Create question">
+    </form><br><br>
+
+    <a href="/finish_survey"><button>Done with Survey</button></a><br><br> 
+
+
+
+
+<% counter_ans=0 %>

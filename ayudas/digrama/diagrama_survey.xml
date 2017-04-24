@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
+<!-- Active URL: http://ondras.zarovi.cz/sql/demo/ -->
+<sql>
+<datatypes db="sqlite">
+  <group label="Affinity">
+    <type label="Text" default="" length="1" sql="TEXT" quote="'" color="rgb(255,200,200)"/>
+    <type label="Numeric" default="0" length="0" sql="NUMERIC" quote="" color="rgb(238,238,170)"/>
+    <type label="Integer" default="0" length="0" sql="INTEGER" quote="" color="rgb(238,238,170)"/>
+    <type label="Real" default="0" length="0" sql="REAL" quote="" color="rgb(238,238,170)"/>
+    <type label="None" default="" length="0" sql="NONE" quote="" color="rgb(200,255,200)"/>
+  </group>
+</datatypes><table x="176" y="234" name="Users">
+<row name="UserID" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Name" null="1" autoincrement="0">
+<datatype>TEXT</datatype>
+<default>NULL</default></row>
+<row name="Email" null="1" autoincrement="0">
+<datatype>TEXT</datatype>
+<default>NULL</default></row>
+<row name="Password" null="1" autoincrement="0">
+<datatype>TEXT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>UserID</part>
+</key>
+</table>
+<table x="363" y="231" name="Surveys">
+<row name="SurveyID" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="UserID" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Users" row="UserID" />
+</row>
+<row name="ResponderID" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Survey" null="1" autoincrement="0">
+<datatype>TEXT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>SurveyID</part>
+</key>
+<comment>Survey</comment>
+</table>
+<table x="599" y="238" name="Questions">
+<row name="QuestionID" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="SurveyID" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Surveys" row="SurveyID" />
+</row>
+<row name="Question" null="1" autoincrement="0">
+<datatype>TEXT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>QuestionID</part>
+</key>
+</table>
+<table x="209" y="588" name="Statistics">
+<row name="StatisticID" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="SurveyID" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Surveys" row="SurveyID" />
+</row>
+<row name="UserID" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Users" row="UserID" />
+</row>
+<row name="AnswerID" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Answers" row="AnswerID" />
+</row>
+<key type="PRIMARY" name="">
+<part>StatisticID</part>
+</key>
+</table>
+<table x="721" y="437" name="Answers">
+<row name="AnswerID" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="QuestionID" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Questions" row="QuestionID" />
+</row>
+<row name="Answers" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>AnswerID</part>
+</key>
+</table>
+</sql>

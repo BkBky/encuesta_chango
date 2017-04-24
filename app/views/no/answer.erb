@@ -1,0 +1,27 @@
+<% survey_questions = Question.all.where(survey_id: @current_question.survey)%>
+
+<%= counter = survey_questions.count %><br>
+
+
+<% survey_questions.each_with_index do |quest_survey, index|%>
+    <%= index+1 %>. <%= quest_survey.question %><br>
+        
+    <%quest_survey.answers.each do |ans|%>
+        <% answer_question = Answer.where(question_id: ans.question_id)%>
+        <% total_ans = answer_question.count%>
+        <ul>
+           <li><%= ans.answer %></li>
+        </ul>
+    <% end %><!-- fin de iteracion quest_survey.answers -->
+
+       
+    <form id="create_answer" action="/create_answer" method="post">
+      <input type="text" name="answer" placeholder="Type an answer">
+      <input type="submit" value="Create answer">
+    </form><br><br>
+    
+    <a href="/question"><button>Done with question</button></a><br><br> 
+    <a href="/finish_survey"><button>Done with Survey</button></a><br><br> 
+
+   
+<% end%> <!-- fin de iteracion_sruvey_questions -->  

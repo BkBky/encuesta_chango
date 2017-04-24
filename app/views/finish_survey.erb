@@ -1,0 +1,29 @@
+<nav>
+  <ul>
+    <li><a href="#"><b><%= @user_login.name%></b></a>
+    <li><a href="/logout"><button>Close session</button></a></li>
+      
+    </li> 
+   
+  </ul>
+  <br clear="all">
+</nav>
+
+<h1 class="view">Encuesta hasta un Chango</h1>
+<p></p>
+<h2><%= @user_login.name%></h2>
+<p>Your Surveys created:</p>
+<h3><% user_surveys = Survey.where(user_id: @user_login.id)%></h3>
+
+<% user_surveys.each do |survey|%>
+  <ul>
+    <li><%= survey.survey %></li>
+    <li><a href="/show_survey/<%= survey.id%>">http://localhost:9393/show_survey</a></li>
+    <li></li>
+    <li>Statistics</li>
+  </ul>
+<% end %>
+  
+<div>
+  
+</div>

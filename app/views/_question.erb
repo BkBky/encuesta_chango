@@ -1,0 +1,8 @@
+Soy question
+
+<h2>Survey: <%= @last_survey.survey %></h2>
+<h3>Create survey questions:</h3>
+ <form action="/create_question" method="post">
+    <input type="text" name="question" value="¿?" placeholder="Write your question">
+    <input type="submit" value="Create question">
+  </form><br><br>

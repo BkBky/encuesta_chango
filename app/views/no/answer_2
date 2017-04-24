@@ -1,0 +1,39 @@
+<% survey_questions = Question.all.where(survey_id: @current_question.survey)%>
+<%= survey_questions.count %>
+<% survey_questions.each do |quest_survey|%>
+  <%= quest_survey.question%><br>
+
+
+
+  <%quest_survey.answers.each do |ans|%>
+    <% if ans.answer == ""%>
+    <%= ans%> hola fuera
+    <% else %>
+    
+    <p>p este es el ans,quesion:</p>
+    <%= ans.question_id%>
+    <% answer_question = Answer.where(question_id: ans.question_id)%>
+    <%=  total_ans = answer_question.count%>
+    <% answer_question.each do |answ|%>
+      <ul>
+        <li><%= answ.answer %></li>
+      </ul> 
+    <%end%><!-- fin answer_question -->
+
+    <% if total_ans <= 2  %>
+        <form action="/create_answer" method="post">
+          <input type="text" name="answer" placeholder="Type   and answer">
+          <input type="submit" value="Create answer">
+        </form><br><br>
+    <% else %>
+       <a href="/question"><button>Crear nueva pregunta</button></a>
+    <% end %><!-- fin if total amns -->
+
+  <% end %>
+
+  <%end%> <!-- fin de quest_survey -->
+
+
+
+ <% end%> <!-- fin de iteracion_sruvey_questions -->
+

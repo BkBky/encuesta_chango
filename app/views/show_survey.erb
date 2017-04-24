@@ -1,0 +1,33 @@
+<nav>
+  <ul>
+    <li><a href="#"><b><%= @user_login.name%></b></a>
+    <li><a href="/logout"><button>Close session</button></a></li>
+      
+    </li> 
+   
+  </ul>
+  <br clear="all">
+</nav>
+
+<h1 class="view">Encuesta hasta un Chango</h1>
+<p></p>
+<h2><%= @user_login.name%></h2>
+
+<div>
+<h3><%= @survey.survey%></h3>
+<% survey_questions = Question.all.where(survey_id: @survey.id)%>
+
+
+<% survey_questions.each_with_index do |quest_survey, index|%>
+    <%= index+1 %>. <%= quest_survey.question %><br>
+        
+    <%quest_survey.answers.each do |ans|%>
+        <% answer_question = Answer.where(question_id: ans.question_id)%>
+        <% total_ans = answer_question.count%>
+        <ul>
+           <li><%= ans.answer %></li>
+        </ul>
+    <% end %><!-- fin de iteracion quest_survey.answers -->
+
+<% end %>
+</div>

@@ -1,0 +1,46 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red242\green242\blue242;\red46\green174\blue187;\red64\green11\blue217;
+}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f0\fs30 \cf2 \cb0 \CocoaLigature0 irb(main):002:0> User.last.surveys_answered\
+D, [2017-04-19T17:14:42.281944 #8400] DEBUG -- :   \cf3 User Load (0.6ms)\cf2   \cf4 SELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1\cf2   [["LIMIT", 1]]\
+D, [2017-04-19T17:14:42.284057 #8400] DEBUG -- :   \cf3 Survey Load (0.5ms)\cf2   \cf4 SELECT "surveys".* FROM "surveys" WHERE "surveys"."responder_id" = $1\cf2   [["responder_id", 3]]\
+=> #<ActiveRecord::Associations::CollectionProxy [#<Survey id: 2, user_id: 2, responder_id: 3, survey: "Horario de Verano", created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">]>\
+irb(main):003:0> User.last.questions\
+\
+CodeaCamp09s-Mac-mini:05_survey_monkey codea_mac_09$ rake console\
+irb(main):001:0> Survey.where(user_id:2)\
+D, [2017-04-19T17:20:50.940306 #8750] DEBUG -- :   \cf3 Survey Load (0.5ms)\cf2   \cf4 SELECT "surveys".* FROM "surveys" WHERE "surveys"."user_id" = $1\cf2   [["user_id", 2]]\
+=> #<ActiveRecord::Relation [#<Survey id: 2, user_id: 2, responder_id: 3, survey: "Horario de Verano", created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">]>\
+\
+\
+irb(main):003:0> Question.where(survey_id:2)\
+D, [2017-04-19T17:22:04.421602 #8750] DEBUG -- :   \cf3 Question Load (0.8ms)\cf2   \cf4 SELECT "questions".* FROM "questions" WHERE "questions"."survey_id" = $1\cf2   [["survey_id", 2]]\
+=> #<ActiveRecord::Relation [#<Question id: 4, survey_id: 2, question: "\'bfConsideras que el horario de Verano es ben\'e9fico p...", created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">, #<Question id: 5, survey_id: 2, question: "\'bfA qu\'e9 porcentaje corresponde el ahorro de energ\'eda...", created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">, #<Question id: 6, survey_id: 2, question: "\'bfDuermes m\'e1s tarde con el horario de verano?", created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">]>\
+\
+\
+irb(main):004:0> Answer.where(question_id:2)\
+D, [2017-04-19T17:23:03.431266 #8750] DEBUG -- :   \cf3 Answer Load (0.5ms)\cf2   \cf4 SELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1\cf2   [["question_id", 2]]\
+=> #<ActiveRecord::Relation [#<Answer id: 4, question_id: 2, answer: "si", created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">, #<Answer id: 5, question_id: 2, answer: "no", created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">, #<Answer id: 6, question_id: 2, answer: "no se", created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">]>\
+irb(main):005:0> \
+\
+\
+irb(main):005:0> Statistic.where(survey_id:1)\
+D, [2017-04-19T17:23:50.996408 #8750] DEBUG -- :   \cf3 Statistic Load (0.6ms)\cf2   \cf4 SELECT "statistics".* FROM "statistics" WHERE "statistics"."survey_id" = $1\cf2   [["survey_id", 1]]\
+=> #<ActiveRecord::Relation [#<Statistic id: 7, user_id: 3, answer_id: 1, survey_id: 1, created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">, #<Statistic id: 8, user_id: 3, answer_id: 4, survey_id: 1, created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">, #<Statistic id: 9, user_id: 3, answer_id: 7, survey_id: 1, created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">]>\
+irb(main):006:0>\
+\
+\
+\
+=> #<ActiveRecord::Relation [#<Statistic id: 1, user_id: 1, answer_id: 10, survey_id: 2, created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">, #<Statistic id: 2, user_id: 1, answer_id: 13, survey_id: 2, created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">, #<Statistic id: 3, user_id: 1, answer_id: 16, survey_id: 2, created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">]>\
+irb(main):007:0> \
+\
+\
+\
+irb(main):007:0> Statistic.where(answer_id:1)\
+D, [2017-04-19T17:24:38.057041 #8750] DEBUG -- :   \cf3 Statistic Load (0.5ms)\cf2   \cf4 SELECT "statistics".* FROM "statistics" WHERE "statistics"."answer_id" = $1\cf2   [["answer_id", 1]]\
+=> #<ActiveRecord::Relation [#<Statistic id: 7, user_id: 3, answer_id: 1, survey_id: 1, created_at: "2017-04-19 22:11:37", updated_at: "2017-04-19 22:11:37">]>\
+irb(main):008:0> }

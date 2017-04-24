@@ -1,0 +1,20 @@
+get '/answer' do
+end
+
+post '/create_survey' do 
+  survey = params[:survey]
+  p survey
+  p "hola, en survey"
+  survey  = Survey.new(user_id: current_user.id, survey: survey)
+
+  
+  #Id Survey vas save, redirect to secret view
+   if survey.save
+     #I declare message for user, I can see it on view/layout
+     session[:successfull] = 'Successfully created survey'
+     redirect to '/question'
+   else
+    session[:error] = 'Error, try again'
+    redirect to '/question'
+  end
+end

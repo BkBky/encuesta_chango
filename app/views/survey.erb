@@ -1,0 +1,24 @@
+<nav>
+  <ul>
+    <li><a href="#"><b><%= @user_login.name%></b></a>
+    <li><a href="/logout"><button>Close session</button></a></li>
+      
+    </li> 
+   
+  </ul>
+  <br clear="all">
+</nav>
+
+<h1 class="view">Encuesta hasta un Chango</h1>
+<p>Estas en secret</p>
+<h2><%= @user_login.name%></h2>
+
+<form action="/create_survey" method="post">
+  <input type="text" name="survey" placeholder="Survey name">
+  <input type="submit" value="Create Survey">
+</form><br><br>
+
+
+
+
+
