@@ -1,3 +1,4 @@
+
 <nav>
   <ul>
     <li><a href="#"><b><%= @user_login.email%></b></a>
@@ -13,10 +14,10 @@
 <h2><%= @user_login.name%></h2>
 <h2>Survey: <%= @last_survey.survey %></h2>
 <h3 id="tip">Create survey questions:</h3>
- <form id="create_question" action="/create_question" method="post">
-    <input type="text" name="question" value="¿?" placeholder="Write your question">
-    <input type="submit" value="Create question">
-  </form><br><br>
+<form id="create_question" action="/create_question" method="post">
+  <input type="text" name="question" value="¿?" placeholder="Write your question">
+  <input type="submit" value="Create question">
+</form><br><br>
 
 <div id="answer"></div>
 

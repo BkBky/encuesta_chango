@@ -10,6 +10,12 @@ get '/show_survey/:survey_id' do
   @survey = Survey.find(survey_id)
   erb :show_survey
 end
+get '/vote_survey/:survey_id' do
+  survey_id = params[:survey_id]
+  @user_login = current_user
+  @survey = Survey.find(survey_id)
+  erb :vote_survey
+end
 
 #Create a survey on database
 post '/create_survey' do 

@@ -1,0 +1,14 @@
+<h3><% surveys = Survey.all%></h3>
+
+<% surveys.each_with_index do |survey, index|%>
+  <ul>
+    <li><%= index+1 %>.- <%= survey.survey %></li>
+    <li><a href="/vote_survey/<%= survey.id%>"><button>Vote Survey</button></a></li>
+
+    <li></li>
+  </ul>
+<% end %>
+  
+<div>
+  
+</div>
